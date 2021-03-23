@@ -1,18 +1,12 @@
 #include <stdio.h>
+#include <string.h>
+#include <stddef.h>
 #include "gap-buffer.h"
 
 // plan:
 // buffer text stored in simple gap buffer
 
 // properties are stored relative to each end, depending on which half they're in
-
-String String_new(Index size) {
-	return (String){
-		.text = malloc(size*sizeof(char)),
-		.props = malloc(size*sizeof(CharProp)),
-		.length = size,
-	};
-}
 
 void GapBuf_init(GapBuf* g, Index size) {
 	*g = (GapBuf){
@@ -22,21 +16,6 @@ void GapBuf_init(GapBuf* g, Index size) {
 		.after = 0,
 		.cont = size,
 	};
-}
-
-void String_move(const String str, Index dest, Index src, Index length) {
-	memmove(&str.text[dest], &str.text[src], length);
-	memmove(&str.props[dest], &str.props[src], length);
-}
-
-void String_trans(const String dest, Index d, const String src, Index s, Index length) {
-	memmove(&dest.text[d], &src.text[s], length);
-	memmove(&dest.props[d], &src.props[s], length);
-}
-
-void String_rtrans(const String dest, Index d, const String src, Index s, Index length) {
-	memmove(&src.text[s], &dest.text[d], length);
-	memmove(&src.props[s], &dest.props[d], length);
 }
 
 void GapBuf_delete(GapBuf* g, Index start, Index size) {
@@ -129,10 +108,5 @@ void GapBuf_debug(const GapBuf* g) {
 	printf("|<-%ld->|", g->gap);
 	fwrite(&g->data.text[g->cont], 1, g->after, stdout);
 	//printf(" a:%ld", g->after);
-	fputc('\n', stdout);
-}
-
-void String_print(const String str) {
-	fwrite(str.text, 1, str.length, stdout);
 	fputc('\n', stdout);
 }

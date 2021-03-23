@@ -1,3 +1,4 @@
+#include <string.h>
 #include "gap-buffer.h"
 
 int main(void) {
