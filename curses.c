@@ -5,10 +5,12 @@
 int main(void) {
 	setlocale(LC_CTYPE, "");
 	WINDOW* w = initscr();
-	addwstr(L"test🖤");
-	refresh();
+	WINDOW* p = newpad(100,100);
+	mvwaddwstr(p, 0,0, L"test🖤");
 	
-	getch();
+   prefresh(p, 0,0,3,3,9+3,9+3);
+	wgetch(p);
+	
 	endwin();
 	return 0;
 }
