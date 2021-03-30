@@ -1,6 +1,5 @@
 #include <locale.h>
-#define NCURSES_WIDECHAR 1
-#include <ncursesw/ncurses.h>
+#include "term.h"
 
 void Term_init(void) {
 	setlocale(LC_CTYPE, "");

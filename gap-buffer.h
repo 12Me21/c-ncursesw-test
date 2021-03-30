@@ -24,4 +24,3 @@ void GapBuf_read(const GapBuf* g, Index start, const String s);
 void GapBuf_write(const GapBuf* g, Index start, const String s);
 void GapBuf_moveGap(GapBuf* g, Index gap);
 void GapBuf_debug(const GapBuf* g);
-void GapBuf_display(const GapBuf* g, WINDOW* w);

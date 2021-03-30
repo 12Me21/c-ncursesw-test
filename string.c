@@ -19,7 +19,7 @@ void String_free(String str) {
 String String_new(Index size) {
 	return memdup(&(struct String){
 		.text = malloc(size*sizeof(char)),
-		.props = malloc(size*sizeof(CharProp)),
+		.props = calloc(size,sizeof(CharProp)),
 		.refs = 1,
 		.length = size,
 	}, sizeof(struct String));

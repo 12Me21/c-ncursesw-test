@@ -2,6 +2,7 @@
 #include "string.h"
 #include "term.h"
 #include "gap-buffer.h"
+#include "buffer.h"
 
 int main(void) {
 	Term_init();
@@ -43,7 +44,13 @@ int main(void) {
 	String s3 = String_new(9+5+5);
 	GapBuf_read(&b, 0, s3);
 	//String_print(s3);
-	GapBuf_display(&b, p);
+	Buffer bb;
+	bb.gapBuf = b;
+	bb.faces[0].attr.underline = 1;
+	bb.faces[1].attr.italic = 1;
+	b.data->props[1] = 1;
+	b.data->props[2] = 1;
+	Buffer_display(&bb, p);
 
 	prefresh(p, 0,0, 3,3, 20+3,20+3);
 	wgetch(p);

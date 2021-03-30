@@ -1,4 +1,4 @@
-srcs:= string main gap-buffer term
+srcs:= string main gap-buffer term buffer
 
 output:= e
 
