@@ -12,6 +12,10 @@ typedef struct GapBuf {
 	// (redundant ↓)
 	Index after; // number of chars after gap
 	Index cont; // position of end of gap
+	// length?
+	
+	Index* frontLines;
+	Index* backLines;
 } GapBuf;
 
 void GapBuf_init(GapBuf* g, Index size);

@@ -2,8 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stddef.h>
+#include <stdint.h>
 
-typedef short CharProp;
+// ok wait
+// why are we storing properties in our string type
+// they are used only for displaying,
+// and can't be uh
+// freely copied between buffers
+// since the font table won't
+// ghhhh
+
+typedef uint8_t CharProp;
 
 typedef ptrdiff_t Index;
 

@@ -17,7 +17,7 @@ void GapBuf_init(GapBuf* g, Index size) {
 		.cont = size,
 	};
 }
-
+	
 void GapBuf_delete(GapBuf* g, Index start, Index size) {
 }
 
@@ -107,10 +107,12 @@ void GapBuf_display(const GapBuf* g, WINDOW* w) {
 	int i;
 	cchar_t wc;
 	init_pair(1, 19, 6);
+	init_pair(2, 5, 9);
 	
 	setcchar(&wc, L" ", 1, 0x0000, &(int){1});
 	int utf8 = 0;
 	int utf8char = -2;
+	//todo: set face for each char
 	for (i=0; i<g->before+g->after; i++) {
 		unsigned char c = g->data->text[i<g->before ? i : i+g->gap];
 		if (utf8) { //continuation bytes
@@ -146,14 +148,21 @@ void GapBuf_display(const GapBuf* g, WINDOW* w) {
 		}
 		if (!utf8) {
 		print:;
+			if (utf8char == -1) {
+				setcchar(&wc, L" ", 1, 0x0000, &(int){2});
+				utf8char = '?';
+			}
 			wc.chars[0] = utf8char;
 			wadd_wch(w, &wc);
+			if (utf8char==-1) {
+				setcchar(&wc, L" ", 1, 0x0000, &(int){1});
+			}
 			utf8char = -2;
 		}
 	}
 	if (utf8char!=-2) {
-		//unfinished
-		utf8char = '?';
+		//unfinished utf8 sequence
+		utf8char = -1;
 		goto print;
 	}
 }
