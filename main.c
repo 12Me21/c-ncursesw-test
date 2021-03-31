@@ -40,16 +40,18 @@ int main(void) {
 	GapBuf_write(&b, 13, s2);
 	//GapBuf_debug(&b);
 	
-	// prints "te-=#=-st 1234" (the buffer contents)
 	String s3 = String_new(9+5+5);
 	GapBuf_read(&b, 0, s3);
+
 	//String_print(s3);
-	Buffer bb;
+	Buffer bb = {0};
 	bb.gapBuf = b;
 	bb.faces[0].attr.underline = 1;
+	bb.faces[0].color = 1;
+	bb.faces[0].background = 2;
 	bb.faces[1].attr.italic = 1;
-	b.data->props[1] = 1;
-	b.data->props[2] = 1;
+	b.props[1] = 1;
+	b.props[2] = 1;
 	Buffer_display(&bb, p);
 
 	prefresh(p, 0,0, 3,3, 20+3,20+3);

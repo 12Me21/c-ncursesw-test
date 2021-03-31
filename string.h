@@ -12,8 +12,6 @@
 // since the font table won't
 // ghhhh
 
-typedef uint8_t CharProp;
-
 typedef ptrdiff_t Index;
 
 // so, this data needs to be garbage collected..
@@ -21,7 +19,6 @@ typedef ptrdiff_t Index;
 
 typedef const struct String {
 	char* text;
-	CharProp* props;
 	Index length;
 	int refs;
 }* String;

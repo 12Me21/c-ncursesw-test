@@ -10,7 +10,7 @@ void* memdup(void* data, size_t size) {
 void String_free(String str) {
 	if (str->refs<=1) {
 		free(str->text);
-		free(str->props);
+		//		free(str->props);
 		free((void*)str);
 	} else
 		((struct String*)str)->refs--;
@@ -19,7 +19,7 @@ void String_free(String str) {
 String String_new(Index size) {
 	return memdup(&(struct String){
 		.text = malloc(size*sizeof(char)),
-		.props = calloc(size,sizeof(CharProp)),
+		//		.props = calloc(size,sizeof(CharProp)),
 		.refs = 1,
 		.length = size,
 	}, sizeof(struct String));
@@ -27,17 +27,14 @@ String String_new(Index size) {
 
 void String_move(String str, Index dest, Index src, Index length) {
 	memmove(&str->text[dest], &str->text[src], length);
-	memmove(&str->props[dest], &str->props[src], length);
 }
 
 void String_trans(String dest, Index d, String src, Index s, Index length) {
 	memmove(&dest->text[d], &src->text[s], length);
-	memmove(&dest->props[d], &src->props[s], length);
 }
 
 void String_rtrans(String dest, Index d, String src, Index s, Index length) {
 	memmove(&src->text[s], &dest->text[d], length);
-	memmove(&src->props[s], &dest->props[d], length);
 }
 
 void String_print(String str) {
