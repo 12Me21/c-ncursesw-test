@@ -1,9 +1,6 @@
 #pragma once
-#include <stdbool.h>
-#include <stdint.h>
+#include "common.h"
 #include "term.h"
-
-typedef uint32_t Color;
 
 typedef struct Face {
 	uint8_t color;

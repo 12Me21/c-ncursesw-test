@@ -1,5 +1,5 @@
 #pragma once
-#include <stdlib.h>
+#include "common.h"
 #include "string.h"
 
 typedef uint8_t CharProp;

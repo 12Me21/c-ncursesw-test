@@ -1,8 +1,5 @@
 #pragma once
-#include <stdlib.h>
-#include <string.h>
-#include <stddef.h>
-#include <stdint.h>
+#include "common.h"
 
 // ok wait
 // why are we storing properties in our string type
